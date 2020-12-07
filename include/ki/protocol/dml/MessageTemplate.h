@@ -31,6 +31,7 @@ namespace dml
 		uint8_t get_access_level() const;
 		void set_access_level(uint8_t access_level);
 
+		const bool has_record() const;
 		const ki::dml::Record &get_record() const;
 		void set_record(ki::dml::Record *record);
 

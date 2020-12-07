@@ -134,12 +134,18 @@ namespace dml
 		}
 
 		// Add it to our maps
-		m_modules.push_back(message_module);
-		m_service_id_map.insert({ message_module->get_service_id(), message_module });
-		m_protocol_type_map.insert({ message_module->get_protocol_type(), message_module });
+		m_modules.emplace_back(message_module);
+		m_service_id_map.emplace(message_module->get_service_id(), message_module);
+		m_protocol_type_map.emplace(message_module->get_protocol_type(), message_module);
 
 		delete[] data;
 		return message_module;
+	}
+
+	void MessageManager::load_module(MessageModule* module) {
+		m_modules.emplace_back(module);
+		m_service_id_map.emplace(module->get_service_id(), module);
+		m_protocol_type_map.emplace(module->get_protocol_type(), module);
 	}
 
 	const MessageModule *MessageManager::get_module(uint8_t service_id) const
@@ -234,13 +240,13 @@ namespace dml
 		}
 
 		// Make sure that the size specified is enough to read this message
-		if (header.get_message_size() < message_template->get_record().get_size())
+		/* if (header.get_message_size() < message_template->get_record().get_size())
 		{
 			std::ostringstream oss;
 			oss << "No message exists with type: " << (uint16_t)header.get_service_id();
 			oss << "(service=" << message_module->get_protocol_type() << ")";
 			throw value_error(oss.str(), value_error::DML_INVALID_MESSAGE_TYPE);
-		}
+		} */
 
 		// Create a new Message from the template
 		auto *message = new Message(message_template);

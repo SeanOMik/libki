@@ -49,10 +49,10 @@ namespace control
 	void SessionOffer::write_to(std::ostream& ostream) const
 	{
 		dml::Record record;
-		record.add_field<dml::USHRT>("m_session_id")->set_value(m_session_id);
-		record.add_field<dml::UINT>("unknown");
-		record.add_field<dml::INT>("m_timestamp")->set_value(m_timestamp);
-		record.add_field<dml::UINT>("m_milliseconds")->set_value(m_milliseconds);
+		record.add_field<dml::USHRT>("m_session_id")->set_value((dml::USHRT) m_session_id);
+		record.add_field<dml::UINT>("unknown")->set_value((dml::UINT) 0);
+		record.add_field<dml::INT>("m_timestamp")->set_value((dml::INT) m_timestamp);
+		record.add_field<dml::UINT>("m_milliseconds")->set_value((dml::UINT) m_milliseconds);
 		record.write_to(ostream);
 	}
 

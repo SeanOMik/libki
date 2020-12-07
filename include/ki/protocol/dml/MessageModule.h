@@ -27,6 +27,7 @@ namespace dml
 		std::string get_protocol_desription() const;
 		void set_protocol_description(std::string protocol_description);
 
+		void add_message_template(MessageTemplate *message_template);
 		const MessageTemplate *add_message_template(std::string name,
 			ki::dml::Record *record, bool auto_sort = true);
 		const MessageTemplate *get_message_template(uint8_t type) const;
@@ -34,8 +35,8 @@ namespace dml
 
 		void sort_lookup();
 
-		Message *create_message(uint8_t message_type) const;
-		Message *create_message(std::string message_name) const;
+		virtual Message *create_message(uint8_t message_type) const;
+		virtual Message *create_message(std::string message_name) const;
 	private:
 		uint8_t m_service_id;
 		std::string m_protocol_type;

@@ -11,10 +11,10 @@ namespace dml
 	Message::Message(const MessageTemplate *message_template)
 	{
 		m_template = message_template;
-		if (m_template)
+		if (m_template && m_template->has_record())
 			m_record = new ki::dml::Record(m_template->get_record());
 		else
-			m_record = nullptr;
+			m_record = new ki::dml::Record();
 	}
 
 	Message::~Message()

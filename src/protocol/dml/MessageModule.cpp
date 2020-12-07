@@ -55,6 +55,12 @@ namespace dml
 		m_protocol_description = protocol_description;
 	}
 
+	void MessageModule::add_message_template(MessageTemplate *message_template) {
+		m_templates.push_back(message_template);
+		m_message_name_map.emplace(message_template->get_name(), message_template);
+		m_message_type_map.emplace(message_template->get_type(), message_template);
+	}
+
 	const MessageTemplate *MessageModule::add_message_template(std::string name,
 		ki::dml::Record *record, bool auto_sort)
 	{

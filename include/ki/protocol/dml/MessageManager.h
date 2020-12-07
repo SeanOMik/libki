@@ -17,6 +17,8 @@ namespace dml
 		~MessageManager();
 
 		const MessageModule *load_module(std::string filepath);
+		void load_module(MessageModule* module);
+
 		const MessageModule *get_module(uint8_t service_id) const;
 		const MessageModule *get_module(const std::string &protocol_type) const;
 

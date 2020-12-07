@@ -76,6 +76,14 @@ namespace dml
 		m_record->add_field<ki::dml::UBYT>("_MsgAccessLvl")->set_value(access_level);
 	}
 
+	const bool MessageTemplate::has_record() const {
+		if (m_record) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	const ki::dml::Record& MessageTemplate::get_record() const
 	{
 		return *m_record;
