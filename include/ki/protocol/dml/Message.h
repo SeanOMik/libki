@@ -36,6 +36,19 @@ namespace dml
 		void write_to(std::ostream &ostream) const override final;
 		void read_from(std::istream &istream) override final;
 		size_t get_size() const override final;
+
+		void set_raw_data(const std::vector<char>& data);
+		const std::vector<char> get_raw_data() const {
+			return m_raw_data;
+		}
+
+		void set_header(MessageHeader header) {
+			m_header = header;
+		}
+
+		void set_record(ki::dml::Record* record) {
+			m_record = record;
+		}
 	private:
 		const MessageTemplate *m_template;
 		ki::dml::Record *m_record;

@@ -36,7 +36,7 @@ namespace dml
 		void set_record(ki::dml::Record *record);
 
 		Message *create_message() const;
-	private:
+	protected:
 		std::string m_name;
 		uint8_t m_type;
 		uint8_t m_service_id;

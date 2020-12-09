@@ -250,9 +250,10 @@ namespace dml
 
 		// Create a new Message from the template
 		auto *message = new Message(message_template);
+		message->set_header(header);
 		try
 		{
-			message->get_record()->read_from(istream);
+			message->read_from(istream);
 		}
 		catch (ki::dml::parse_error &e)
 		{

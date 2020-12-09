@@ -97,10 +97,32 @@ namespace dml
 			return field;
 		}
 
+		template <typename ValueT>
+		Field<ValueT>* add_field(std::string name, size_t bit_count, bool transferable = true) {
+			// Does this field already exist?
+			if (has_field(name)) {
+				// Return nullptr if the type is not the same
+				auto* field = m_field_map.at(name);
+				if (!field->is_type<ValueT>())
+					return nullptr;
+				return dynamic_cast<Field<ValueT>*>(field);
+			}
+
+			// Create the field
+			auto* field = new Field<ValueT>(name);
+			field->m_transferable = transferable;
+			field->m_bit_count = bit_count;
+			add_field(field);
+			return field;
+		}
+
 		size_t get_field_count() const;
 
 		FieldList::const_iterator fields_begin() const;
 		FieldList::const_iterator fields_end() const;
+
+		FieldList::iterator fields_begin();
+		FieldList::iterator fields_end();
 
 		void write_to(std::ostream &ostream) const override final;
 		void read_from(std::istream &istream) override final;

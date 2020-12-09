@@ -1,3 +1,4 @@
+#include "..\..\..\include\ki\protocol\dml\Message.h"
 #include "ki/protocol/dml/Message.h"
 #include "ki/protocol/dml/MessageTemplate.h"
 #include "ki/protocol/exception.h"
@@ -135,7 +136,11 @@ namespace dml
 
 	void Message::read_from(std::istream &istream)
 	{
-		m_header.read_from(istream);
+		// Check if we need to read for the header
+		if (m_header.get_size() == 0) {
+			m_header.read_from(istream);
+		}
+
 		if (m_template)
 		{
 			// Check for mismatches between the header and template
@@ -167,6 +172,10 @@ namespace dml
 		if (m_record)
 			return m_header.get_size() + m_record->get_size();
 		return 4 + m_raw_data.size();
+	}
+
+	void Message::set_raw_data(const std::vector<char>& data) {
+		m_raw_data = data;
 	}
 }
 }

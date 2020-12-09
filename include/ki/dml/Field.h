@@ -36,6 +36,7 @@ namespace dml
 
 		void write_to(std::ostream &ostream) const override final;
 		void read_from(std::istream &istream) override final;
+		void read_from(std::istream& istream, size_t bit_count = sizeof(ValueT));
 		size_t get_size() const override final;
 
 		/**
@@ -121,6 +122,7 @@ namespace dml
 		void set_value_from_string(std::string value) override final;
 	private:
 		ValueT m_value;
+		size_t m_bit_count = 0;
 
 		/**
 		* Returns a new Field with the same name, transferability,

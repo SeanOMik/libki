@@ -59,6 +59,14 @@ namespace dml
 		return m_fields.end();
 	}
 
+	FieldList::iterator Record::fields_begin() {
+		return m_fields.begin();
+	}
+
+	FieldList::iterator Record::fields_end() {
+		return m_fields.end();
+	}
+
 	void Record::write_to(std::ostream &ostream) const
 	{
 		for (auto it = m_fields.begin(); it != m_fields.end(); ++it)

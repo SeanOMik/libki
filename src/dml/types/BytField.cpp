@@ -16,8 +16,10 @@ namespace dml
 	template <>
 	void BytField::read_from(std::istream &istream)
 	{
+		size_t bit_count = (m_bit_count != 0) ? m_bit_count : sizeof(BYT);
+
 		ValueBytes<BYT> data;
-		istream.read(data.buff, sizeof(BYT));
+		istream.read(data.buff, bit_count);
 		if (istream.fail())
 		{
 			std::ostringstream oss;
