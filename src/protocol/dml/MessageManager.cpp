@@ -253,6 +253,7 @@ namespace dml
 		message->set_header(header);
 		try
 		{
+			message->set_header_consumed(true);
 			message->read_from(istream);
 		}
 		catch (ki::dml::parse_error &e)

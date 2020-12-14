@@ -46,7 +46,7 @@ namespace dml
 	}
 
 	template <>
-	const char* FltField::get_type_name() const
+	const std::string FltField::get_type_name() const
 	{
 		return "FLT";
 	}

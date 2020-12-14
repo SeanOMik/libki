@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <locale>
 #include <codecvt>
+#include <iostream>
 
 namespace ki
 {
@@ -37,6 +38,9 @@ namespace dml
 		if (endianness_check.buff[0] == 0x01)
 			std::reverse(&length_data.buff[0], &length_data.buff[2]);
 
+		// If the byte size is less than the sizeof(char16_t) then just return.
+		if (length_data.value == 0) return;
+
 		// Read the data into a buffer
 		size_t length = length_data.value * sizeof(char16_t);
 		char *data = new char[length];
@@ -67,7 +71,7 @@ namespace dml
 	}
 
 	template <>
-	const char* WStrField::get_type_name() const
+	const std::string WStrField::get_type_name() const
 	{
 		return "WSTR";
 	}

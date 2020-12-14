@@ -21,20 +21,21 @@ namespace dml
 		if (istream.fail())
 		{
 			std::ostringstream oss;
-			oss << "Not enough data was available to read UBYT value (" << m_name << ").";
+			oss << "Not enough data was available to read " << get_type_name() << " value (" << m_name << ").";
 			throw parse_error(oss.str());
 		}
+
 		m_value = data.value;
 	}
 
 	template <>
 	size_t UBytField::get_size() const
 	{
-		return sizeof(BYT);
+		return sizeof(UBYT);
 	}
 
 	template <>
-	const char* UBytField::get_type_name() const
+	const std::string UBytField::get_type_name() const
 	{
 		return "UBYT";
 	}

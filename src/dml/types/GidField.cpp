@@ -43,7 +43,7 @@ namespace dml
 	}
 
 	template <>
-	const char* GidField::get_type_name() const
+	const std::string GidField::get_type_name() const
 	{
 		return "GID";
 	}

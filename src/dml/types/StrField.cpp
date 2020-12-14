@@ -35,6 +35,8 @@ namespace dml
 		if (endianness_check.buff[0] == 0x01)
 			std::reverse(&length_data.buff[0], &length_data.buff[2]);
 
+		if (length_data.value == 0) return;
+
 		// Read the data into a buffer
 		char *data = new char[length_data.value];
 		istream.read(data, length_data.value);
@@ -56,7 +58,7 @@ namespace dml
 	}
 
 	template <>
-	const char* StrField::get_type_name() const
+	const std::string StrField::get_type_name() const
 	{
 		return "STR";
 	}

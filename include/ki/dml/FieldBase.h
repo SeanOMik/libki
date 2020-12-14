@@ -30,7 +30,7 @@ namespace dml
 		{
 			return (typeid(ValueT).hash_code() == m_type_hash);
 		}
-		virtual const char *get_type_name() const = 0;
+		virtual const std::string get_type_name() const = 0;
 
 		/**
 		 * Creates an XML node from this field's data.

@@ -47,7 +47,7 @@ namespace dml
 	}
 
 	template <>
-	const char* DblField::get_type_name() const
+	const std::string DblField::get_type_name() const
 	{
 		return "DBL";
 	}

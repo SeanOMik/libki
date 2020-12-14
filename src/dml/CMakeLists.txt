@@ -2,6 +2,7 @@ target_sources(${PROJECT_NAME}
 	PRIVATE
 		${PROJECT_SOURCE_DIR}/src/dml/FieldBase.cpp
 		${PROJECT_SOURCE_DIR}/src/dml/Record.cpp
+		${PROJECT_SOURCE_DIR}/src/dml/types/BoolField.cpp
 		${PROJECT_SOURCE_DIR}/src/dml/types/BytField.cpp
 		${PROJECT_SOURCE_DIR}/src/dml/types/UBytField.cpp
 		${PROJECT_SOURCE_DIR}/src/dml/types/ShrtField.cpp

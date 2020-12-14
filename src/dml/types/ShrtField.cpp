@@ -43,7 +43,7 @@ namespace dml
 	}
 
 	template <>
-	const char* ShrtField::get_type_name() const
+	const std::string ShrtField::get_type_name() const
 	{
 		return "SHRT";
 	}

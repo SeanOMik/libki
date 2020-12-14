@@ -49,9 +49,14 @@ namespace dml
 		void set_record(ki::dml::Record* record) {
 			m_record = record;
 		}
+
+		void set_header_consumed(bool header_consumed) {
+			m_header_consumed = header_consumed;
+		}
 	private:
 		const MessageTemplate *m_template;
 		ki::dml::Record *m_record;
+		bool m_header_consumed = false;
 
 		// This is used to store raw data when a Message is
 		// constructed without a MessageTemplate.

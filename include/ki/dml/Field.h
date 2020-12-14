@@ -32,7 +32,7 @@ namespace dml
 			m_value = value;
 		}
 
-		const char *get_type_name() const override final;
+		const std::string get_type_name() const override final;
 
 		void write_to(std::ostream &ostream) const override final;
 		void read_from(std::istream &istream) override final;
@@ -56,7 +56,7 @@ namespace dml
 				rapidxml::node_type::node_element, name_buffer, value_buffer);
 
 			// Create the TYPE attribute
-			char *type_attr_value_buffer = doc.allocate_string(get_type_name(), 0);
+			char *type_attr_value_buffer = doc.allocate_string(get_type_name().c_str(), 0);
 			auto *type_attr = doc.allocate_attribute("TYPE", type_attr_value_buffer);
 			node->append_attribute(type_attr);
 
@@ -158,6 +158,7 @@ namespace dml
 		}
 	};
 
+	typedef Field<BOOL> BoolField;
 	typedef Field<BYT> BytField;
 	typedef Field<UBYT> UBytField;
 	typedef Field<SHRT> ShrtField;
@@ -186,26 +187,27 @@ namespace dml
 	}
 
 	template <>
-	std::string BytField::get_value_string() const;
+	std::string BoolField::get_value_string() const;
+	template <>
+	void BoolField::set_value_from_string(std::string value);
 
+	template <>
+	std::string BytField::get_value_string() const;
 	template <>
 	void BytField::set_value_from_string(std::string value);
 
 	template <>
 	std::string UBytField::get_value_string() const;
-
 	template <>
 	void UBytField::set_value_from_string(std::string value);
 
 	template <>
 	std::string StrField::get_value_string() const;
-
 	template <>
 	void StrField::set_value_from_string(std::string value);
 
 	template <>
 	std::string WStrField::get_value_string() const;
-
 	template <>
 	void WStrField::set_value_from_string(std::string value);
 }

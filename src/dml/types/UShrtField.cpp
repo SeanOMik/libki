@@ -42,7 +42,7 @@ namespace dml
 	}
 
 	template <>
-	const char* UShrtField::get_type_name() const
+	const std::string UShrtField::get_type_name() const
 	{
 		return "USHRT";
 	}

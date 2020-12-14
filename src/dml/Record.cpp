@@ -78,7 +78,7 @@ namespace dml
 
 	void Record::read_from(std::istream &istream)
 	{
-		for (auto it = m_fields.begin(); it != m_fields.end(); ++it)
+		for (std::vector<FieldBase*>::iterator it = m_fields.begin(); it != m_fields.end(); ++it)
 		{
 			if ((*it)->is_transferable())
 				(*it)->read_from(istream);

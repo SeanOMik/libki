@@ -6,6 +6,7 @@ namespace ki
 {
 namespace dml
 {
+	typedef bool BOOL;
 	typedef int8_t BYT;
 	typedef uint8_t UBYT;
 	typedef int16_t SHRT;

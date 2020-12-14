@@ -16,10 +16,8 @@ namespace dml
 	template <>
 	void BytField::read_from(std::istream &istream)
 	{
-		size_t bit_count = (m_bit_count != 0) ? m_bit_count : sizeof(BYT);
-
 		ValueBytes<BYT> data;
-		istream.read(data.buff, bit_count);
+		istream.read(data.buff, sizeof(BYT));
 		if (istream.fail())
 		{
 			std::ostringstream oss;
@@ -36,7 +34,7 @@ namespace dml
 	}
 
 	template <>
-	const char* BytField::get_type_name() const
+	const std::string BytField::get_type_name() const
 	{
 		return "BYT";
 	}

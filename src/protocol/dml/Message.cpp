@@ -1,4 +1,3 @@
-#include "..\..\..\include\ki\protocol\dml\Message.h"
 #include "ki/protocol/dml/Message.h"
 #include "ki/protocol/dml/MessageTemplate.h"
 #include "ki/protocol/exception.h"
@@ -137,7 +136,7 @@ namespace dml
 	void Message::read_from(std::istream &istream)
 	{
 		// Check if we need to read for the header
-		if (m_header.get_size() == 0) {
+		if (!m_header_consumed) {
 			m_header.read_from(istream);
 		}
 
@@ -150,7 +149,7 @@ namespace dml
 			if (m_header.get_type() != m_template->get_type())
 				throw value_error("Message Type mismatch between MessageHeader and assigned template.",
 					value_error::DML_INVALID_MESSAGE_TYPE);
-			
+
 			// Read the payload into the record
 			m_record->read_from(istream);
 		}

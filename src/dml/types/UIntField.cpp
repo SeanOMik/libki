@@ -43,7 +43,7 @@ namespace dml
 	}
 
 	template <>
-	const char* UIntField::get_type_name() const
+	const std::string UIntField::get_type_name() const
 	{
 		return "UINT";
 	}
