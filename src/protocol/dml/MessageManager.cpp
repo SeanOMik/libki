@@ -234,7 +234,7 @@ namespace dml
 		if (!message_template)
 		{
 			std::ostringstream oss;
-			oss << "No message exists with type: " << (uint16_t)header.get_service_id();
+			oss << "No message exists with type: " << (uint16_t)header.get_type();
 			oss << "(service=" << message_module->get_protocol_type() << ")";
 			throw value_error(oss.str(), value_error::DML_INVALID_MESSAGE_TYPE);
 		}
@@ -259,7 +259,7 @@ namespace dml
 		catch (ki::dml::parse_error &e)
 		{
 			delete message;
-			throw parse_error("Failed to read DML message payload.", parse_error::INVALID_MESSAGE_DATA);
+			throw parse_error("Failed to read DML message payload. (" + std::string(e.what()) + ")", parse_error::INVALID_MESSAGE_DATA);
 		}
 		return message;
 	}

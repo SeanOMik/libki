@@ -55,10 +55,14 @@ namespace dml
 		m_protocol_description = protocol_description;
 	}
 
-	void MessageModule::add_message_template(MessageTemplate *message_template) {
+	void MessageModule::add_message_template(MessageTemplate *message_template, bool auto_sort) {
 		m_templates.push_back(message_template);
 		m_message_name_map.emplace(message_template->get_name(), message_template);
 		m_message_type_map.emplace(message_template->get_type(), message_template);
+
+		if (auto_sort) {
+			sort_lookup();
+		}
 	}
 
 	const MessageTemplate *MessageModule::add_message_template(std::string name,
@@ -128,7 +132,7 @@ namespace dml
 		// First, clear the message type map since we're going to be
 		// moving everything around
 		m_message_type_map.clear();
-
+		
 		// Iterating over a map with std::string as the key
 		// is guaranteed to be in alphabetical order
 		for (auto it = m_message_name_map.begin();

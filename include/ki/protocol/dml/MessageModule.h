@@ -27,7 +27,7 @@ namespace dml
 		std::string get_protocol_desription() const;
 		void set_protocol_description(std::string protocol_description);
 
-		void add_message_template(MessageTemplate *message_template);
+		void add_message_template(MessageTemplate *message_template, bool auto_sort = false);
 		const MessageTemplate *add_message_template(std::string name,
 			ki::dml::Record *record, bool auto_sort = true);
 		const MessageTemplate *get_message_template(uint8_t type) const;
